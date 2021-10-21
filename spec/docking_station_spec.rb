@@ -14,13 +14,9 @@ describe DockingStation do
     expect(docking_station.release_bike).to respond_to :working?
   end
 
-  it 'docking bike docking station' do
-    docking_station = DockingStation.new
-    expect (docking_station.docking).should be_array 
-  end
+  it { is_expected.to respond_to(:dock).with(1).argument }
+  
+  it { is_expected.to respond_to(:bike) }
 
-  it 'adds bike the docking station' do
-    docking_station = DockingStation.new
-    expect (docking_station.add_bike).to_not raise_error
-  end
+  
 end

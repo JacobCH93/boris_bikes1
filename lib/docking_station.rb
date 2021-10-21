@@ -9,11 +9,12 @@ class DockingStation
     Bike.new
   end
 
-  def docking
-    docking = []
+  def dock(bike)
+    @bike = bike
   end
 
-  def add_bike
-    docking << @Bike
+  def bike
+    @bike
   end
+
 end
