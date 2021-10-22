@@ -7,15 +7,29 @@ class DockingStation
   end
 
   def release_bike
-    fail 'No bikes available' if @garage.count == 0
+    fail 'No bikes available' if empty?
     @garage.pop
   end
 
   def dock(bike)
-    fail "No space for bike" if @garage.count >= 20
+    fail "No space for bike" if full?
     @garage.push(bike)
   end
 
-  attr_reader :bike
+  DEFAULT_CAPACITY = 20
+
+ attr_reader :bike
+
+private
+
+  def full?
+    @garage.count >= DEFAULT_CAPACITY
+  end
+
+  def empty?
+    @garage.count == 0
+  end
+
+ 
   
 end

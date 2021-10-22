@@ -21,12 +21,11 @@ require 'docking_station'
 
   it 'cannot store 21 bikes' do
     subject.dock(Bike.new)
-    expect { 20.times { subject.dock Bike.new } }.to raise_error "No space for bike"
+    expect { DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new } }.to raise_error "No space for bike"
   end
 
   it 'can store 20 bikes' do
-    subject.dock(Bike.new)
-    expect { 19.times { subject.dock Bike.new } }.to_not raise_error "No space for bike"
+    expect { DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new } }.to_not raise_error "No space for bike"
   end
 
   describe '#release_bike' do
