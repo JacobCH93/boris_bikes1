@@ -19,15 +19,20 @@ require 'docking_station'
   
   it { is_expected.to respond_to(:bike) }
 
+  it 'cannot store 21 bikes' do
+    subject.dock(Bike.new)
+    expect { 20.times { subject.dock Bike.new } }.to raise_error "No space for bike"
+  end
+
+  it 'can store 20 bikes' do
+    subject.dock(Bike.new)
+    expect { 19.times { subject.dock Bike.new } }.to_not raise_error "No space for bike"
+  end
+
   describe '#release_bike' do
   it 'raises an error when there are no bikes' do 
     expect { subject.release_bike }.to raise_error 'No bikes available'
   end
-  
-  it 'raises an error when full and dock is called' do
-    subject.dock(Bike.new)
-    expect { subject.dock Bike.new }.to raise_error "No space for bike"
-   end
   
   it 'releases a bike' do
     bike = Bike.new
