@@ -9,12 +9,12 @@ require 'docking_station'
     docking_station = DockingStation.new
     expect(docking_station).respond_to? :bike
   end
-  # it 'bike working' do
-  #   docking_station = DockingStation.new
-  #   bike = Bike.new
-  #   subject.dock(bike)
-  #   expect(docking_station.release_bike).to respond_to :working?
-  # end
+
+  it 'bike working' do
+    docking_station = DockingStation.new
+    docking_station.dock(Bike.new)
+    expect(docking_station.release_bike).respond_to? :working?
+  end
 
   it { is_expected.to respond_to(:dock).with(1).argument }
   
